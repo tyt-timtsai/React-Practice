@@ -1,48 +1,66 @@
 import Header from './Header';
+import AddTask from './AddItem';
+import SearchItem from './SearchItem';
 import Content from './Content';
 import Footer from './Footer';
 import { useState } from 'react';
 
 function App() {
-  const [item, setItem] = useState([
-    {
-      id: 1,
-      checked: true,
-      tesk: 'One half pound bag of Cocoa Covered Almonds Unsalted'
-    },
-    {
-      id: 2,
-      checked: false,
-      tesk: 'Item 2'
-    },
-    {
-      id: 3,
-      checked: false,
-      tesk: 'Item 3'
-    }]);
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem('shoppinglist')));
+  const [newItem, setNewItem] = useState('')
+  const [search, setSearch] = useState('')
 
+    const setAndSaveItem = (newItems) => {
+      setItems(newItems);
+      localStorage.setItem('shoppinglist', JSON.stringify(newItems));
+    }
+
+    const addTask = (task) => {
+      const id = items.length ? items[items.length - 1].id + 1 : 1;
+      const myNewItem = { id, checked:false, task };
+      const listItems = [...items, myNewItem];
+      setAndSaveItem(listItems);
+    }
 
     const handleCheck = (id) => {
-      const listItems = item.map((item) => item.id === id ? {...item, checked: !item.checked} : item);
-      setItem(listItems);
-      localStorage.setItem('shoppinglist', JSON.stringify(listItems));
+      const listItems = items.map((item) => item.id === id ? {...item, checked: !item.checked} : item);
+      // setItem(listItems);
+      // localStorage.setItem('shoppinglist', JSON.stringify(listItems));
+      setAndSaveItem(listItems);
     }
 
     const handleDelete = (id) => {
-      const listItems = item.filter((item) => item.id !== id);
-      setItem(listItems);
-      localStorage.setItem('shoppinglist', JSON.stringify(listItems));
+      const listItems = items.filter((item) => item.id !== id);
+      // setItem(listItems);
+      // localStorage.setItem('shoppinglist', JSON.stringify(listItems));
+      setAndSaveItem(listItems);
+    }
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      if (!newItem) return;
+      addTask(newItem);
+      setNewItem('');
     }
 
   return (
     <div className="App">
       <Header title='Grocery List' />
+      <AddTask 
+        newItem={newItem}
+        setNewItem={setNewItem}
+        handleSubmit={handleSubmit}
+      />
+      <SearchItem 
+        search={search}
+        setSearch={setSearch}
+      />
       <Content 
-        item={item}
+        items={items.filter(item => ((item.task).toLowerCase()).includes(search.toLowerCase()))}
         handleCheck={handleCheck}
         handleDelete={handleDelete}
       />
-      <Footer length={item.length} />
+      <Footer length={items.length} />
     </div>
   );
 }

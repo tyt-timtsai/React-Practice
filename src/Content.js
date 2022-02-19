@@ -1,13 +1,13 @@
 import ItemList from './ItemList'
 
-const Content = ({item, handleCheck, handleDelete}) => {
+const Content = ({items, handleCheck, handleDelete}) => {
 
   return (
     <main>
         
-        {item.length ? (
+        {items.length ? (
           <ItemList
-            item={item}
+            items={items}
             handleCheck={handleCheck}
             handleDelete={handleDelete}
           />
