@@ -1,21 +1,21 @@
 // import React from 'react'
 import './User.css'
 
-const User = () => {
+const User = ({name, avatar, userName, followers, following, repos, url}) => {
   return (
     <div className='user-container'>
       <div className="user-info">
         <div className="user">
-          <img src="https://picsum.photos/id/237/300" alt="avatar" />
-          <h3>User Name</h3>
+          <img src={avatar} alt="avatar" />
+          <h3>{userName}</h3>
         </div>
         <div className="info">
           <ul>
-            <li>Repostory</li>
-            <li>Following</li>
+            <li>{repos} Repostory</li>
+            <li>{following} Following</li>
             <li>Stargazer</li>
-            <li>Follower</li>
-            <li>link to Github</li>
+            <li>{followers} Follower</li>
+            <li><a href={url} target='_blank'>link to Github</a></li>
           </ul>
         </div>
       </div>

@@ -1,12 +1,23 @@
 // import React from 'react'
 import './Search.css'
 
-const Search = () => {
+const Search = ({ handleSearch, handleSubmit }) => {
   return (
-    <div className='container'>
-      <input className='search-bar' type='search' name='search' id='search' placeholder='User Name'/>
-      <input className='search-btn' type='submit' value='Search' />
-    </div>
+    <form className='container' onSubmit={handleSubmit}>
+      <input 
+        className='search-bar'
+        type='search'
+        name='search'
+        id='search'
+        placeholder='User Name'
+        onChange={handleSearch}
+        />
+      <input 
+        className='search-btn'
+        type='submit'
+        value='Search'
+        />
+    </form>
   )
 }
 
