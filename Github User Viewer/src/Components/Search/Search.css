@@ -1,0 +1,29 @@
+.container {
+    padding: 1rem;
+    text-align: center;
+}
+
+input {
+    height: 2rem;
+    border-radius: 1rem;
+}
+
+.search-bar {
+    margin-right: 10px;
+    padding: 0px 20px;
+    width: min(20rem, 50vw);
+    border: 2px solid steelblue;
+}
+
+.search-btn {
+    padding: 0 10px;
+    background-color: steelblue;
+    border: transparent;
+    box-shadow: 2px 4px 6px -1px rgba(100,100,100,0.8);
+    color: aliceblue;
+    cursor: pointer;
+}
+
+.search-btn:active {
+    transform: scale(0.95);
+}

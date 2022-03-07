@@ -1,0 +1,46 @@
+.user-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.user-info {
+    width: 450px;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    border: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: steelblue;
+    box-shadow: 4px 4px 8px -1px rgba(100,100,100,0.8);
+}
+
+.user {
+    box-shadow: 4px 0px 8px -1px rgba(100,100,100,0.8);
+    border-radius: 10px;
+    background-color:aliceblue;
+}
+
+img {
+    width: 100%;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+}
+
+ul {
+    margin: 0;
+    padding: 0 10px;
+    width: 100%;
+    list-style: none;
+    text-align: start;
+    color: aliceblue;
+}
+
+li {
+    padding: 15px 0px;
+}
