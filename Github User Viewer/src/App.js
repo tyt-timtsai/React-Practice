@@ -20,14 +20,6 @@ function App() {
   const [userInput, setUserInput] = useState('');
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetch('https://api.github.com/users/example')
-      .then(res => res.json())
-      .then(data => {
-        setData(data)
-      });
-  }, []);
-
   const setData = ({ name, login, followers, following, public_repos, avatar_url, html_url }) => {
     setName(name);
     setUserName(login);
@@ -36,25 +28,45 @@ function App() {
     setRepos(public_repos);
     setAvatar(avatar_url);
     setUrl(html_url);
-  }
+  };
+
+  useEffect(() => {
+    console.log('run');
+    fetch(`https://api.github.com/users/example`)
+      .then(res => res.json())
+      .then(data => {
+        setData(data)
+        console.log('get');
+      });
+  },[]);
+
 
   const handleSearch = (e) => {
     setUserInput(e.target.value)
-  }
+  };
 
-  const handleSubmit = () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('change');
+    // console.log(`https://api.github.com/users/${userInput}`);
     fetch(`https://api.github.com/users/${userInput}`)
+      .then(console.log('start'))
       .then(res => res.json())
+      .then(console.log('start2'))
       .then(data => {
-        if(data.massage){
-          setError(data.massage);
+        if(data.message){
+          setError(data.message);
+          console.log('no user');
         }
         else {
+          console.log('start4')
           setData(data);
           setError(null);
-        }
-      })
-  }
+          console.log('fetch');
+        };
+      });
+  };
 
   return (
     <div className="App">
@@ -64,7 +76,7 @@ function App() {
         handleSubmit={handleSubmit}
       />
       { error ? (
-      <h1>{error}</h1>
+      <h1 style={{backgroundColor:'#fff', color:'steelblue'}}>{error}</h1>
       ) : (
         <div className="card">
           <User

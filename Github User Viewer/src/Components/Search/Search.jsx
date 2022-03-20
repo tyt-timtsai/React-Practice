@@ -1,4 +1,4 @@
-// import React from 'react'
+import React from 'react'
 import './Search.css'
 
 const Search = ({ handleSearch, handleSubmit }) => {
@@ -15,7 +15,7 @@ const Search = ({ handleSearch, handleSubmit }) => {
       <input 
         className='search-btn'
         type='submit'
-        value='Search'
+        value='submit'
         />
     </form>
   )

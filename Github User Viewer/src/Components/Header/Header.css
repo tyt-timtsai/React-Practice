@@ -5,6 +5,6 @@
 h1 {
     margin: 0;
     padding: 1.5rem ;
-    background: linear-gradient(to right, steelblue, lightpink);
+    background: steelblue;
     color: aliceblue;
 }
