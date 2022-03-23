@@ -1,7 +1,7 @@
 // import React from 'react'
 import './User.css'
 
-const User = ({name, avatar, userName, followers, following, repos, url}) => {
+const User = ({name, avatar, userName, followers, following, repos, url, gists}) => {
   return (
     <div className='user-container'>
       <div className="user-info">
@@ -13,11 +13,11 @@ const User = ({name, avatar, userName, followers, following, repos, url}) => {
 
         <div className="info">
           <ul>
-            <li>{repos} Repostory</li>
-            <li>{following} Following</li>
-            <li>Stargazer</li>
-            <li>{followers} Follower</li>
-            <li><a href={url} target='_blank' rel='noreferrer'>link to Github</a></li>
+            <li>Public Repostory : {repos}</li>
+            <li>Public Gists : {gists}</li>
+            <li>Following : {following}</li>
+            <li>Follower : {followers}</li>
+            <li><a href={url} target='_blank' rel='noreferrer noopener'>Github Page</a></li>
           </ul>
         </div>
         

@@ -23,9 +23,9 @@ function App() {
   const [error, setError] = useState(null);
 
 //Reops Data
-  const [repoData, setRepoData] = useState('');
+  const [repoData, setRepoData] = useState([]);
   const [repoName, setRepoName] = useState([]);
-  const [reposUrl, setReposUrl] = useState([]);
+  const [repoUrl, setRepoUrl] = useState([]);
   const [starGazers, setStarGazers] = useState([]);
   const [language, setLanguage] = useState([]);
 
@@ -43,9 +43,9 @@ function App() {
   };
 
 //repos資料
-  // const setRepoData = ({ name, svn_url ,stargazers_count, language}) => {
-  //   setRepoName(name);
-  //   setReposUrl(svn_url);
+  // const setRepoData = ({svn_url, stargazers_count, language}) => {
+  //   // setRepoName(name);
+  //   setRepoUrl(svn_url);
   //   setStarGazers(stargazers_count);
   //   setLanguage(language);
   // };
@@ -57,6 +57,7 @@ function App() {
       .then(data => {
         setData(data)
       });
+    i = 1;
   },[]);
 
 //輸入要搜尋的部分
@@ -81,26 +82,26 @@ function App() {
     });
   }
 
+let i = 1;
+
+
 //fetch Repos資料
-  function fetchRepos(){
-    fetch(`https://api.github.com/users/${userInput}/repos?page=1&per_page=10`)
+  async function fetchRepos(){
+    await fetch(`https://api.github.com/users/${userInput}/repos?page=${i}&per_page=10`)
       .then(res => res.json())
       .then((data) => {
-        const list = data.map((item) => [
-          item.name,
-          // item.svn_url, 
-          // item.stargazers_count,
-          item.language
-        ])
-        const reponame = data.map((item) => [item.name])
-        const repoobj = Array.from(reponame, (item) => {
-          return {name : item[0]}
-        })
+        const repo_name = data.map((item) =>item.name)
+        setRepoName(repo_name)
 
-        const repo_name = Array.from(data.map((item) => [item.name]), (item) => {
-          return {name : item[0]}
-        })
-        
+        const repo_url = data.map((item) => item.svn_url)
+        setRepoUrl(repo_url)
+
+        const repo_star = data.map((item) => item.stargazers_count)
+        setStarGazers(repo_star)
+
+        const repo_lang = data.map((item) => item.language)
+        setLanguage(repo_lang)
+
         const repo_data = Array.from(data.map((item) => [
           item.name,
           item.svn_url,
@@ -114,22 +115,17 @@ function App() {
             language : item[3]
           }
         })
-        // const reponame = data.map(item => [{}])
-        const repourl = data.map((item) => [item.svn_url])
 
         console.log(data)
-        console.log(repo_name)
         console.log(repo_data)
-        console.log(reponame)
-        console.log(repoobj)
-        console.log(repourl)
-        setRepoName(reponame)
-        setReposUrl(repourl)
-        setRepoData(list)
-        console.log(list);
-      ;})
+        setRepoData(repo_data)
+      })
   }
-  console.log(repoName)
+  // console.log(language)
+  // console.log(repoName);
+  console.log(repoUrl)
+  console.log(starGazers)
+  console.log(language)
 
 
 //submit之後fetch新的使用者
@@ -138,6 +134,23 @@ function App() {
     fetchUser();
     fetchRepos();
   };
+
+//repoName return 成 HTML
+  const showRepoName = repoName.map((item, index) => {
+    return <div key={index}>{item}</div>
+  });
+//repoUrl return 成 HTML
+  const showRepoUrl = repoUrl.map((item, index) => {
+    return <a key={index}>{item}</a>
+  });
+//repoStargazer return 成 HTML
+  const showStargazer = starGazers.map((item, index) => {
+    return <div key={index}>{item}</div>
+  });
+//repoLanguage return 成 HTML
+  const showLanguage = language.map((item, index) => {
+    return <div key={index}>{item}</div>
+  });
 
   return (
     <div className="App">
@@ -163,8 +176,14 @@ function App() {
           {/* <Aside /> */}
 
 
-          {/* <Feed /> */}
-          <div className='container'>
+          <Feed 
+            showRepoName={showRepoName}
+            showRepoUrl={showRepoUrl}
+            showStargazer={showStargazer}
+            showLanguage={showLanguage}
+          />
+
+          {/* <div className='container'>
             <div className="card">
               <ul>
                 <li>{repoName}</li>
@@ -175,10 +194,10 @@ function App() {
                 <li>repos stargazers_count</li>
               </ul>
             </div>
-          </div>
+          </div> */}
 
-          {repoData.slice(0,10)}
-          {reposUrl.slice(0,10)}
+          {/* {repoData.slice(0,10)} */}
+          {/* {reposUrl.slice(0,10)} */}
       </div>)}
     </div>
   );

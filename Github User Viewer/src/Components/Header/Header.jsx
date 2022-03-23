@@ -3,7 +3,7 @@ import './Header.css'
 
 const Header = () => {
   return (
-    <h1>Github User Viewer</h1>
+    <h2>Github User Viewer</h2>
   )
 }
 

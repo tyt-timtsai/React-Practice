@@ -13,6 +13,7 @@ input {
     padding: 0px 20px;
     width: min(20rem, 50vw);
     border: 2px solid steelblue;
+    font-family: 'Comfortaa', cursive;
 }
 
 .search-btn {
@@ -22,6 +23,7 @@ input {
     box-shadow: 2px 4px 6px -1px rgba(100,100,100,0.8);
     color: aliceblue;
     cursor: pointer;
+    font-family: 'Comfortaa', cursive;
 }
 
 .search-btn:active {

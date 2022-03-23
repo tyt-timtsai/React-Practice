@@ -44,3 +44,27 @@ ul {
 li {
     padding: 15px 0px;
 }
+
+li:last-child {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: steelblue;
+    background-color: aliceblue;
+    padding: 10px 15px;
+    border-radius: 1rem;
+    transition: all 0.2s ease-out;
+}
+
+a:hover {
+    background-color: rgb(77, 154, 218);
+    color: aliceblue;
+    box-shadow: 3px 3px 6px rgba(100,100,100,0.5);
+    cursor: pointer;
+}
+
+a:active {
+    transform: scale(0.9);
+}

@@ -9,13 +9,13 @@ const Search = ({ handleSearch, handleSubmit }) => {
         type='search'
         name='search'
         id='search'
-        placeholder='User Name'
+        placeholder='Search User name...'
         onChange={handleSearch}
         />
       <input 
         className='search-btn'
         type='submit'
-        value='submit'
+        value='Search'
         />
     </form>
   )
