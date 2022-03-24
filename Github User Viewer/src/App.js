@@ -24,11 +24,7 @@ function App() {
 
 //Reops Data
   const [repoData, setRepoData] = useState([]);
-  const [repoName, setRepoName] = useState([]);
-  const [repoUrl, setRepoUrl] = useState([]);
-  const [starGazers, setStarGazers] = useState([]);
-  const [language, setLanguage] = useState([]);
-
+  let page = 1;
 
 //使用者的資料
   const setData = ({ name, login, followers, following, public_repos, avatar_url, html_url, public_gists }) => {
@@ -42,14 +38,11 @@ function App() {
     setGists(public_gists);
   };
 
-//repos資料
-  // const setRepoData = ({svn_url, stargazers_count, language}) => {
-  //   // setRepoName(name);
-  //   setRepoUrl(svn_url);
-  //   setStarGazers(stargazers_count);
-  //   setLanguage(language);
-  // };
-
+  //輸入要搜尋的部分
+    const handleSearch = (e) => {
+      setUserInput(e.target.value)
+    };
+  
 // 一開始先預設在example
   useEffect(() => {
     fetch(`https://api.github.com/users/example`)
@@ -57,14 +50,8 @@ function App() {
       .then(data => {
         setData(data)
       });
-    i = 1;
+    page = 1;
   },[]);
-
-//輸入要搜尋的部分
-  const handleSearch = (e) => {
-    setUserInput(e.target.value)
-  };
-
   
 //fetch使用者資料
   function fetchUser(){
@@ -77,32 +64,17 @@ function App() {
       else {
         setData(data);
         setError(null);
-        console.log(data)
+        setRepoData([]);
       };
     });
   }
 
-let i = 1;
-
-
 //fetch Repos資料
   async function fetchRepos(){
-    await fetch(`https://api.github.com/users/${userInput}/repos?page=${i}&per_page=10`)
+    await fetch(`https://api.github.com/users/${userInput}/repos?page=${page}&per_page=10`)
       .then(res => res.json())
       .then((data) => {
-        const repo_name = data.map((item) =>item.name)
-        setRepoName(repo_name)
-
-        const repo_url = data.map((item) => item.svn_url)
-        setRepoUrl(repo_url)
-
-        const repo_star = data.map((item) => item.stargazers_count)
-        setStarGazers(repo_star)
-
-        const repo_lang = data.map((item) => item.language)
-        setLanguage(repo_lang)
-
-        const repo_data = Array.from(data.map((item) => [
+        const newRepo = Array.from(data.map((item) => [
           item.name,
           item.svn_url,
           item.stargazers_count,
@@ -116,16 +88,9 @@ let i = 1;
           }
         })
 
-        console.log(data)
-        console.log(repo_data)
-        setRepoData(repo_data)
+        setRepoData((prevArray) =>[...prevArray, ...newRepo])
       })
   }
-  // console.log(language)
-  // console.log(repoName);
-  console.log(repoUrl)
-  console.log(starGazers)
-  console.log(language)
 
 
 //submit之後fetch新的使用者
@@ -135,23 +100,6 @@ let i = 1;
     fetchRepos();
   };
 
-//repoName return 成 HTML
-  const showRepoName = repoName.map((item, index) => {
-    return <div key={index}>{item}</div>
-  });
-//repoUrl return 成 HTML
-  const showRepoUrl = repoUrl.map((item, index) => {
-    return <a key={index}>{item}</a>
-  });
-//repoStargazer return 成 HTML
-  const showStargazer = starGazers.map((item, index) => {
-    return <div key={index}>{item}</div>
-  });
-//repoLanguage return 成 HTML
-  const showLanguage = language.map((item, index) => {
-    return <div key={index}>{item}</div>
-  });
-
   return (
     <div className="App">
       <Header />
@@ -160,45 +108,28 @@ let i = 1;
         handleSubmit={handleSubmit}
       />
       { error ? (
-      <h1 style={{backgroundColor:'#fff', color:'steelblue', textAlign:'center'}}>{error}</h1>
-      ) : (
-        <div className="card">
-          <User
-            name={name}
-            avatar={avatar}
-            userName={userName}
-            followers={followers}
-            following={following}
-            repos={repos}
-            url={url}
-            gists={gists}
-          />
-          {/* <Aside /> */}
-
-
-          <Feed 
-            showRepoName={showRepoName}
-            showRepoUrl={showRepoUrl}
-            showStargazer={showStargazer}
-            showLanguage={showLanguage}
-          />
-
-          {/* <div className='container'>
-            <div className="card">
-              <ul>
-                <li>{repoName}</li>
-                <li>
-                  <a href='#' target='_blank' rel='noreferrer noopener'>repo url</a>
-                </li>
-                <li>repos language</li>
-                <li>repos stargazers_count</li>
-              </ul>
+        <h1 style={{backgroundColor:'#fff', color:'steelblue', textAlign:'center'}}>{error}</h1>
+        ) : (
+          <div className="main">
+            <div className="container">
+              <User
+                name={name}
+                avatar={avatar}
+                userName={userName}
+                followers={followers}
+                following={following}
+                repos={repos}
+                url={url}
+                gists={gists}
+              />
             </div>
-          </div> */}
-
-          {/* {repoData.slice(0,10)} */}
-          {/* {reposUrl.slice(0,10)} */}
-      </div>)}
+            <div className="card-section">
+              <Feed
+                repoData={repoData}
+              />
+            </div>
+          </div>
+        )}
     </div>
   );
 }

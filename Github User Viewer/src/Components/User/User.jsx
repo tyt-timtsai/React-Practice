@@ -5,7 +5,6 @@ const User = ({name, avatar, userName, followers, following, repos, url, gists})
   return (
     <div className='user-container'>
       <div className="user-info">
-
         <div className="user">
           <img src={avatar} alt="avatar" />
           <h3>{userName}</h3>
@@ -19,8 +18,7 @@ const User = ({name, avatar, userName, followers, following, repos, url, gists})
             <li>Follower : {followers}</li>
             <li><a href={url} target='_blank' rel='noreferrer noopener'>Github Page</a></li>
           </ul>
-        </div>
-        
+        </div>  
       </div>
     </div>
   )

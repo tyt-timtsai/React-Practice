@@ -6,13 +6,15 @@ body {
     font-family: 'Comfortaa', cursive;
 }
 
-header {
-    padding: 3rem;
+.title {
+    display: flex;
+    justify-content: center;
 }
 
 h2 {
     margin: 0;
     padding: 2rem 5rem;
-    /* background: steelblue; */
+    text-align: center;
+    width: max-content;
     color: rgb(80, 88, 88);
 }

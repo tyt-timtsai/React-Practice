@@ -3,7 +3,9 @@ import './Header.css'
 
 const Header = () => {
   return (
-    <h2>Github User Viewer</h2>
+    <div className="title">
+      <h2>Github User Viewer</h2>
+    </div>
   )
 }
 

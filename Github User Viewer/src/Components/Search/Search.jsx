@@ -3,7 +3,7 @@ import './Search.css'
 
 const Search = ({ handleSearch, handleSubmit }) => {
   return (
-    <form className='container' onSubmit={handleSubmit}>
+    <form className='search-container' onSubmit={handleSubmit}>
       <input 
         className='search-bar'
         type='search'
