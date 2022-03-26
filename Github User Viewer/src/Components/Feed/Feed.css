@@ -1,6 +1,7 @@
 
 
 .repos-container {
+    margin-bottom: 20px;
     width: 450px;
     display: grid;
     justify-items: center;
