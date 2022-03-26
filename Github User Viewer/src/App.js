@@ -9,7 +9,6 @@ import React, { useState, useEffect } from 'react'
 
 
 function App() {
-
 // User Data
   const [name, setName] = useState('');
   const [userName, setUserName] = useState('');
@@ -24,7 +23,8 @@ function App() {
 
 //Reops Data
   const [repoData, setRepoData] = useState([]);
-  let page = 1;
+  const [page, setPage] = useState(1)
+  const reposAPI = `https://api.github.com/users/${userInput}/repos?page=${page}&per_page=10`
 
 //使用者的資料
   const setData = ({ name, login, followers, following, public_repos, avatar_url, html_url, public_gists }) => {
@@ -38,9 +38,17 @@ function App() {
     setGists(public_gists);
   };
 
-  //輸入要搜尋的部分
+//輸入要搜尋的部分
     const handleSearch = (e) => {
       setUserInput(e.target.value)
+      setPage(1);
+    };
+
+//submit之後fetch新的使用者
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      fetchUser();
+      fetchRepos();
     };
   
 // 一開始先預設在example
@@ -50,12 +58,18 @@ function App() {
       .then(data => {
         setData(data)
       });
-    page = 1;
   },[]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    };
+  },[page,userInput,reposAPI])
   
 //fetch使用者資料
-  function fetchUser(){
-   fetch(`https://api.github.com/users/${userInput}`)
+  async function fetchUser(){
+    await fetch(`https://api.github.com/users/${userInput}`)
     .then(res => res.json())
     .then(data => {
       if(data.message){
@@ -69,12 +83,27 @@ function App() {
     });
   }
 
-//fetch Repos資料
+  const handleScroll = (e) => {
+    if(window.innerHeight + e.target.documentElement.scrollTop >= e.target.documentElement.scrollHeight){
+      fetchRepos(userInput);
+      console.log('handleScroll userInput :'+ userInput);
+      console.log('handleScroll page :'+ page);
+      console.log('handleScroll reposAPI :'+ reposAPI); 
+    }
+  }
+ 
+
+// //fetch Repos資料
   async function fetchRepos(){
-    await fetch(`https://api.github.com/users/${userInput}/repos?page=${page}&per_page=10`)
+
+    console.log('inside function page :'+ page);
+    console.log('inside function userInput :'+ userInput);
+    setPage(page => page+1)
+
+    await fetch(reposAPI)
       .then(res => res.json())
       .then((data) => {
-        const newRepo = Array.from(data.map((item) => [
+        const newRepos = Array.from(data.map((item) => [
           item.name,
           item.svn_url,
           item.stargazers_count,
@@ -87,18 +116,10 @@ function App() {
             language : item[3]
           }
         })
-
-        setRepoData((prevArray) =>[...prevArray, ...newRepo])
+        setRepoData((prevArray) =>[...prevArray, ...newRepos])
       })
-  }
-
-
-//submit之後fetch新的使用者
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetchUser();
-    fetchRepos();
   };
+
 
   return (
     <div className="App">
@@ -107,6 +128,35 @@ function App() {
         handleSearch={handleSearch}
         handleSubmit={handleSubmit}
       />
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
       { error ? (
         <h1 style={{backgroundColor:'#fff', color:'steelblue', textAlign:'center'}}>{error}</h1>
         ) : (
