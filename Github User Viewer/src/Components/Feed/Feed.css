@@ -27,7 +27,6 @@
 .cards:hover {
     /* color: rgb(222, 232, 240); */
     transform: scale(1.05);
-    cursor: pointer;
     background-color: steelblue;
 }
 
