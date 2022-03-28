@@ -1,8 +1,9 @@
-import React from 'react'
-
 const ErrorPage = () => {
   return (
-    <div>404 Not Found</div>
+    <div className='container'>
+      <h1>404 Not Found</h1>
+      <a style={{fontWeight:'bold', fontSize:'1.5rem'}} href="/">&#8592;</a>
+      </div>
   )
 }
 

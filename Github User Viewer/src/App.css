@@ -1,15 +1,74 @@
+/* Variables */
+:root {
+  /* Colors */
+  --first-color: steelblue;
+  --first-color-alt: hsl(197, 98%, 77%);
+  --title-color: hsl(174, 12%, 15%);
+  --text-color: hsl(174, 8%, 3%);
+  --body-color: hsl(174, 100%, 99%);
+  --body-color-trans: rgba(255, 255, 255, 0.6);
+  --body-color-trans2: rgba(55, 55, 55, 0.9);
+  --container-color: #fff;
+  /* Font */
+  --h1-font-size: 1.5rem;
+  --sub-font-size: 1.2rem;
+  --normal-font-size: 1rem;
+  --tiny-font-size: 0.625rem;
+  /* z index */
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  /* border styles */
+  --border-shadow: 4px 4px 8px -1px rgba(100,100,100,0.8);
+}
+
+/* 重複性的css 和 HTML tag的css */
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   min-height: 100vh;
+  font-family: 'Comfortaa', cursive;
+  background-color: hsl(180, 16%, 51%);
+  /* background-color: hsl(0, 0%, 100%); */
+}
+
+a {
+  text-decoration: none;
+  color: var(--body-color-trans2);
+}
+
+a:active {
+  transform: scale(0.9);
+}
+
+ul {
+  margin: 0;
+  padding: 0 10px;
+  width: 100%;
+  list-style: none;
+  text-align: start;
+  color: aliceblue;
+}
+
+li {
+  list-style: none;
+}
+
+p {
+  font-size: var(--tiny-font-size);
 }
 
 .container {
+  margin: 0 10px;
   padding: 0;
   width: auto;
-  display: grid;
-  justify-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* 在App.js中的css */
 .card-section {
   display: grid;
   justify-items: center;

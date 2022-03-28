@@ -1,18 +1,15 @@
-import React from 'react'
-import User from '../Components/User/User'
 import Feed from '../Components/Feed/Feed'
 
-const ReposList = ({repoData, hasMore, userName ,error}) => {
+const ReposList = ({reposData, hasMore, userName, page}) => {
 
 return (
-    <div className="container">
-        <div className="card-section">
-            <Feed
-              repoData={repoData}
-              userName={userName}
-            />
-            { !hasMore ?(<div>No more repostory</div>):(<div>Loading...</div>) }
-        </div>
+    <div className="card-container">
+        <Feed
+          reposData={reposData}
+          userName={userName}
+          page={page}
+        />
+        { !hasMore&&reposData ?(<div>No more repostory</div>):(<div></div>) }
     </div>
   )
 }

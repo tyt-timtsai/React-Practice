@@ -1,5 +1,3 @@
-
-
 .repos-container {
     margin-bottom: 20px;
     width: 450px;
@@ -17,7 +15,7 @@
     justify-items: center;
     align-items: center;
     grid-auto-rows: 1fr;
-    border: 1px solid steelblue;
+    border: 1.5px solid var(--body-color-trans);
     box-sizing: border-box;
     border-radius: 10px;
     box-shadow: 4px 4px 4px -1px rgba(100,100,100,0.8);
@@ -25,18 +23,59 @@
 }
 
 .cards:hover {
-    /* color: rgb(222, 232, 240); */
     transform: scale(1.05);
-    background-color: steelblue;
+    background-color: var(--body-color-trans);
+    color: var(--body-color-trans2);
+}
+
+.cards:hover > div {
+    color: var(--body-color-trans2);
+}
+
+.stargazer {
+    display: flex;
+    gap: 10px;
+    color: var(--body-color-trans);
+}
+
+.card-index {
+    position: absolute;
+    padding-left: 30px;
+    height: 140px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 10em;
+}
+
+.star-icon {
+    color: rgba(255, 255, 78, 0.8);
 }
 
 .repo-name {
-    font-size: 1.2rem;
+    font-size: var(--sub-font-size);
     font-weight: 500;
     text-align: center;
+    color: var(--body-color-trans);
+}
+
+.repo-lang {
+    color: var(--body-color-trans);
+    font-weight: 500;
+    font-size: var(--normal-font-size);
 }
 
 .no-lang {
-    color: lightgray;
+    color: var(--body-color-trans);
     font-weight: 300;
+    font-size: var(--tiny-font-size);
+}
+
+/* 大型裝置 */
+@media screen and (min-width: 1024px){
+    .repos-container{
+        width: 70vw;
+        grid-template-columns: repeat(4, 1fr);    
+    }
 }

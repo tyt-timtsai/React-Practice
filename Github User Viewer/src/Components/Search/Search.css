@@ -14,7 +14,7 @@ input {
     margin-right: 10px;
     padding: 0px 20px;
     width: min(20rem, 50vw);
-    border: 2px solid steelblue;
+    border: 1px solid steelblue;
     font-family: 'Comfortaa', cursive;
 }
 

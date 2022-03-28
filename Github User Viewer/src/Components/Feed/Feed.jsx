@@ -1,34 +1,32 @@
-import { Link, Route, Routes } from 'react-router-dom'
-import ReposPage from '../../Pages/ReposPage'
+import { Link } from 'react-router-dom'
 import './Feed.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-const Feed = ({repoData,userName, error}) => {
-  const showRepoCard = repoData.map((item) => (
-        <Link        
+const Feed = ({reposData,userName, page}) => {
+  const showRepoCard = reposData.map((item,index) => (
+        <Link
           key= {item.name}
           to={`/user/${userName}/repos/${item.name}`}
           className='cards'
         >
-          <div className="repo-name">{item.name}</div>
-          <div className="stargazer">Stargazers : {item.stargazers_count}</div>
+          <div className='stargazer'>
+          <span className='card-index'>{index}</span>
+            <FontAwesomeIcon className='star-icon' icon={faStar} />
+            {item.stargazers_count}
+          </div>
+          <div className='repo-name'>{item.name}</div>
           {item.language==null ? (
             <div className='no-lang'>no specific language</div>
             ) : (
-            <div className="repo-lang">{item.language}</div>
+            <div className='repo-lang'>{item.language}</div>
           )}
-          {/* <a
-              href={item.svn_url} 
-              target='_blank' 
-              rel='noreferrer noopener' 
-              className="repo-url">
-              Repos Page
-          </a> */}
         </Link>
   ))    
 
   return (
       <div className='repos-container'>
-        {showRepoCard}
+        {page >= 2 ? (<>{showRepoCard}</>):(<div></div>)}
       </div>
   )
 }

@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Routes, Route, Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
+import './Pagestyle.css'
 import User from '../Components/User/User'
-import Feed from '../Components/Feed/Feed'
 import Search from '../Components/Search/Search'
-
-
 
 function Home({
   name,
@@ -15,23 +12,10 @@ function Home({
   repos,
   url,
   gists,
-  setName,
-  setFollowers,
-  setFollowing,
-  setAvatar,
-  setUrl,
-  setGists,
-  setUserName,
-  setRepos,
-  //
   handleSearch,
   handleSubmit,
   error,
-  repoData,
-  hasMore,
 }){
-
-
 
   return (
     <div>
@@ -43,7 +27,7 @@ function Home({
           <h1 style={{backgroundColor:'#fff', color:'steelblue', textAlign:'center'}}>{error}</h1>
           ) : (
             <div className="main">
-              <div className="container">
+              <div className="user-container">
                 <User
                   name={name}
                   avatar={avatar}
@@ -54,9 +38,7 @@ function Home({
                   url={url}
                   gists={gists}
                 />
-                <Link to={`/user/${userName}/repos`}>Show Repos List</Link>
-                <hr></hr>
-                <Outlet />
+                <Link className="page-link" to={`/user/${userName}/repos`}>Repos List</Link>
               </div>
             </div>
           )}

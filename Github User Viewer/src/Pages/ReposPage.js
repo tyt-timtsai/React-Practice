@@ -1,46 +1,88 @@
-import React ,{useEffect,useState} from 'react'
+import './Pagestyle.css'
+import {useEffect,useState} from 'react'
 import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar, faEye } from '@fortawesome/free-solid-svg-icons'
 
 
-const ReposPage = ({userInput}) => {
+const ReposPage = ({userName}) => {
   const {id} = useParams();
-  const [repo, setRepo] = useState([]);
+  const [reposName, setReposName] = useState('')
+  const [reposDesc, setReposDesc] = useState('')
+  const [reposLanguage, setReposLanguage] = useState('')
+  const [reposStargazers, setReposStargazers] = useState('')
+  const [reposUrl, setReposUrl] = useState('')
+  const [reposWatchers, setReposWatchers] = useState('')
+  const [reposUpdated, setReposUpdated] = useState('')
+
+  const setData = ({name, description, language, stargazers_count, svn_url, watchers, updated_at}) => {
+    setReposName(name);
+    setReposDesc(description);
+    setReposLanguage(language);
+    setReposStargazers(stargazers_count);
+    setReposUrl(svn_url);
+    setReposWatchers(watchers);
+    setReposUpdated(updated_at);
+  }
 
   useEffect(() => {
     fetchRepo()
-    console.log(repo);
+    console.log('id:'+id);
   },[id])
 
   const fetchRepo = () => {
-    fetch(`https://api.github.com/users/${userInput}/repos/${id}`)
+    fetch(`https://api.github.com/repos/${userName}/${id}`)
     .then(res => res.json())
     .then((data) => {
-      setRepo(data)
+      setData(data)
     })
   }
 
-  const singleRepos = repo.map((item) => (
-    <div className=''>
-      <div>{item.name}</div>
-      <div className="stargazer">Stargazers : {item.stargazers_count}</div>
-      {item.language==null ? (
-            <div className='no-lang'>no specific language</div>
-            ) : (
-            <div className="repo-lang">{item.language}</div>
-          )}
-      <div>{item.desc}</div>
-      <a
-        href={item.svn_url} 
-        target='_blank' 
-        rel='noreferrer noopener' 
-        className="repo-url">
-        Github
-      </a>
-    </div>
-  ))
-
   return (
-    <div>{singleRepos}</div>
+    <div className='container page-container'>
+      <div className='single-reponame'>{reposName}</div>
+      <div className='single-page'>
+        <div className='data-container'>
+          {reposLanguage==null ? (
+            <div className='repo-lang'>no specific language</div>
+            ) : (
+            <div className='lang'>{reposLanguage}</div>
+          )}
+          <div className="datas">
+            <span className='stargazer'>
+              <FontAwesomeIcon className='star-icon' icon={faStar} />
+              {reposStargazers}
+              <span>Stargazers</span>
+            </span>
+            <span className='watcher'>
+              <FontAwesomeIcon className='watcher-icon' icon={faEye} />
+              {reposWatchers}
+              <span>Watchers</span>
+            </span>
+          </div>
+        </div>
+
+        <div className='repos-desc'>
+            {reposDesc==null ? (
+              <div className='repo-lang'>no description</div>
+              ) : (
+              <div className='repo-lang'>{reposDesc}</div>
+            )}
+        </div>
+        <div className='no-lang'>
+          <span>Last Updated at | </span>
+          {reposUpdated}
+        </div>
+      </div>
+        <a
+          href={reposUrl} 
+          target='_blank' 
+          rel='noreferrer noopener' 
+          className="page-link"
+        >
+          Github Repos
+        </a>
+    </div>
   )
 }
 
