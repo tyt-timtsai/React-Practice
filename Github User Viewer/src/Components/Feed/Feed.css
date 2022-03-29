@@ -9,6 +9,7 @@
 }
 
 .cards {
+    position: relative;
     padding: 15px;
     width: 220px;;
     display: grid;
@@ -40,13 +41,15 @@
 
 .card-index {
     position: absolute;
-    padding-left: 30px;
     height: 140px;
+    width: 200px;
+    right: 8px;
+    bottom: 25px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     color: rgba(255, 255, 255, 0.15);
-    font-size: 10em;
+    font-size: 8em;
 }
 
 .star-icon {
@@ -55,9 +58,11 @@
 
 .repo-name {
     font-size: var(--sub-font-size);
+    width: 185px;
     font-weight: 500;
     text-align: center;
     color: var(--body-color-trans);
+    overflow-wrap: break-word;
 }
 
 .repo-lang {

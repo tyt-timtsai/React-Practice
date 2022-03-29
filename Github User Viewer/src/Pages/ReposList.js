@@ -4,6 +4,9 @@ const ReposList = ({reposData, hasMore, userName, page}) => {
 
 return (
   <div className="conatiner list-container">
+    <div className='single-reponame'>
+      {userName}
+    </div>
     <div className="card-container">
         <Feed
           reposData={reposData}
