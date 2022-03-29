@@ -8,13 +8,13 @@ const Nav = ({userName}) => {
         <div className='nav-container'>
             <ul className='nav-list'>
                 <li>
-                    <Link className='nav-link' to='/'>
+                    <Link className='nav-link' to='/Github-Viewer/'>
                         <FontAwesomeIcon className='nav-icon' icon={faHouse} />
                         <span className="nav-name">Home</span>
                     </Link>
                 </li>
                 <li>
-                    <Link className='nav-link' to={`/user/${userName}/repos`}>
+                    <Link className='nav-link' to={`/Github-Viewer/user/${userName}/repos`}>
                         <FontAwesomeIcon className='nav-icon' icon={faFolder} />
                         <span className="nav-name">List</span>
                     </Link>

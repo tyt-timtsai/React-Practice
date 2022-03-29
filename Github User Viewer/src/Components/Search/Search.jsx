@@ -1,8 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import './Search.css'
 
 const Search = ({ handleSearch, handleSubmit }) => {
-  let navigate = useNavigate();
 
 
   return (

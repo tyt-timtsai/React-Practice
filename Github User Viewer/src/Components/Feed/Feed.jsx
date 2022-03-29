@@ -7,7 +7,7 @@ const Feed = ({reposData,userName, page}) => {
   const showRepoCard = reposData.map((item,index) => (
         <Link
           key= {item.name}
-          to={`/user/${userName}/repos/${item.name}`}
+          to={`/Github-Viewer/user/${userName}/repos/${item.name}`}
           className='cards'
         >
           <div className='stargazer'>

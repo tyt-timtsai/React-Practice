@@ -27,7 +27,6 @@ const ReposPage = ({userName}) => {
 
   useEffect(() => {
     fetchRepo()
-    console.log('id:'+id);
   },[id])
 
   const fetchRepo = () => {

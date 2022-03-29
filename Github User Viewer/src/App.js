@@ -134,7 +134,7 @@ async function fetchRepos(){
         </div>
    
         <Routes>
-          <Route path='/' exact element={<Home
+          <Route path='/Github-Viewer/' exact element={<Home
             userName={userName}
             avatar={avatar}
             followers={followers}
@@ -146,13 +146,13 @@ async function fetchRepos(){
             handleSearch={handleSearch}
             handleSubmit={handleSubmit}
           />}/>
-          <Route path={`/user/${userName}/repos`} element={<ReposList
+          <Route path={`/Github-Viewer/user/${userName}/repos`} element={<ReposList
             userName={userName}
             reposData={reposData}
             hasMore={hasMore}
             page={page}
           />}/>
-          <Route path={`/user/${userName}/repos/:id`} element={<ReposPage userName={userName}/>}/>
+          <Route path={`/Github-Viewer/user/${userName}/repos/:id`} element={<ReposPage userName={userName}/>}/>
           <Route path='*' element={<ErrorPage />}/>
         </Routes>
       </div>

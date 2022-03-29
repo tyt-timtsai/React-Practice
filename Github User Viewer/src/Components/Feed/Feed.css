@@ -1,6 +1,6 @@
 .repos-container {
     margin-bottom: 20px;
-    width: 450px;
+    width: auto;
     display: grid;
     justify-items: center;
     grid-template-columns: repeat(2, 1fr);
@@ -75,7 +75,7 @@
 /* 大型裝置 */
 @media screen and (min-width: 1024px){
     .repos-container{
-        width: 70vw;
+        width: auto;
         grid-template-columns: repeat(4, 1fr);    
     }
 }

@@ -24,7 +24,7 @@ function Home({
           handleSubmit={handleSubmit}
         />
         { error ? (
-          <h1 style={{backgroundColor:'#fff', color:'steelblue', textAlign:'center'}}>{error}</h1>
+          <h1 style={{color:'#fff', textAlign:'center'}}>{error}</h1>
           ) : (
             <div className="main">
               <div className="user-container">
@@ -38,7 +38,7 @@ function Home({
                   url={url}
                   gists={gists}
                 />
-                <Link className="page-link" to={`/user/${userName}/repos`}>Repos List</Link>
+                <Link className="page-link" to={`/Github-Viewer/user/${userName}/repos`}>Repos List</Link>
               </div>
             </div>
           )}

@@ -1,4 +1,9 @@
 /* ReposList Page */
+.list-container {
+    margin-bottom: 20px;
+    flex-direction: column;
+    text-align: center;
+}
 .page-link {
     display: flex;
     justify-content: center;
@@ -19,7 +24,7 @@
 
 .card-container {
     margin: 0;
-    width: auto;
+    width: 100vw;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -120,4 +125,10 @@
         flex-direction: column;
         align-items: center;
     }
+}
+
+/* Error page */
+
+.error-page {
+    flex-direction: column;
 }
