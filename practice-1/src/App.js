@@ -10,38 +10,37 @@ function App() {
   const [newItem, setNewItem] = useState('')
   const [search, setSearch] = useState('')
 
-    const setAndSaveItem = (newItems) => {
-      setItems(newItems);
-      localStorage.setItem('shoppinglist', JSON.stringify(newItems));
-    }
+  const setAndSaveItem = (newItems) => {
+    setItems(newItems);
+    localStorage.setItem('shoppinglist', JSON.stringify(newItems));
+  }
 
-    const addTask = (task) => {
-      const id = items.length ? items[items.length - 1].id + 1 : 1;
-      const myNewItem = { id, checked:false, task };
-      const listItems = [...items, myNewItem];
-      setAndSaveItem(listItems);
-    }
+  const addTask = (task) => {
+    const id = items.length ? items[items.length - 1].id + 1 : 1;
+    const myNewItem = { id, checked:false, task };
+    const listItems = [...items, myNewItem];
+    setAndSaveItem(listItems);
+  }
 
-    const handleCheck = (id) => {
-      const listItems = items.map((item) => item.id === id ? {...item, checked: !item.checked} : item);
-      // setItem(listItems);
-      // localStorage.setItem('shoppinglist', JSON.stringify(listItems));
-      setAndSaveItem(listItems);
-    }
+  //新增功能
+  const handleCheck = (id) => {
+    const listItems = items.map((item) => item.id === id ? {...item, checked: !item.checked} : item);
+    setAndSaveItem(listItems);
+  }
 
-    const handleDelete = (id) => {
-      const listItems = items.filter((item) => item.id !== id);
-      // setItem(listItems);
-      // localStorage.setItem('shoppinglist', JSON.stringify(listItems));
-      setAndSaveItem(listItems);
-    }
+  //刪除功能
+  const handleDelete = (id) => {
+    const listItems = items.filter((item) => item.id !== id);
+    setAndSaveItem(listItems);
+  }
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      if (!newItem) return;
-      addTask(newItem);
-      setNewItem('');
-    }
+  // Submit 後
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!newItem) return;
+    addTask(newItem);
+    setNewItem('');
+  }
 
   return (
     <div className="App">

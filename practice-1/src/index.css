@@ -9,7 +9,7 @@ html{
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100%;
   font-family:'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -25,14 +25,14 @@ body {
   height: 100vh;
   width: 100%;
   max-width: 500px;
-  border: 1px solid mediumblue;
+  border: 1px solid rgb(52, 112, 168);
   margin: auto;
 }
 
 header{
   width: 100%;
   padding: 0 0.25em;
-  background-color: mediumblue;
+  background-color: rgb(52, 112, 168);
   color: aliceblue;
   display: flex;
   justify-content: space-between;
@@ -52,7 +52,7 @@ main{
 footer{
   width: 100%;
   padding: 0.25em;
-  background-color: mediumblue;
+  background-color: rgb(52, 112, 168);
   color: aliceblue;
   display: grid;
   place-content: center;
@@ -112,7 +112,7 @@ ul li::before{
 
 .item svg:focus,
 .item svg:hover {
-  color: red;
+  color: rgb(195, 67, 67);
   outline: none;
 }
 
@@ -149,14 +149,14 @@ button {
   padding: 0.5rem;
   font-size: 1rem;
   background-color: aliceblue;
-  color: mediumblue;
+  color: rgb(52, 112, 168);
   cursor: pointer;
 }
 
 button:focus,
 button:hover {
   color: white;
-  background-color: limegreen;
+  background-color: rgb(88, 141, 119);
   outline: none;
 }
 
